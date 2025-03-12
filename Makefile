@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -Wall -std=c++17
 SRC_DIR = src
 BIN_DIR = bin
-TARGET = $(BIN_DIR)/jrpg_game
+TARGET = $(BIN_DIR)/JRPG
 
 SRCS = $(SRC_DIR)/main.cpp \
        $(SRC_DIR)/Character/Character.cpp \
