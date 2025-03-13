@@ -34,6 +34,7 @@ public:
 
     virtual void attack(Character &target);
     virtual void useSkill(Character &target);
+    virtual void useSkill2(Character &target);
     virtual void focus();
 
     virtual void displayStats() const;

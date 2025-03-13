@@ -12,6 +12,10 @@ void Berserker::useSkill(Character& target) {
     std::cout << name << " uses Rage Strike on " << target.getName() << "!\n";
 }
 
+void Berserker::useSkill2(Character& target) {
+    std::cout << name << " uses Volley to hit " << target.getName() << " multiple times!\n";
+}
+
 void Berserker::focus() {
     mp += 2;
     std::cout << name << " focuses and gains 2 MP!\n";

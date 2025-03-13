@@ -46,6 +46,11 @@ void Character::useSkill(Character &target)
     std::cout << name << " uses a skill!\n";
 }
 
+void Character::useSkill2(Character &target)
+{
+    std::cout << name << " uses a skill!\n";
+}
+
 void Character::focus()
 {
     mp += 2;

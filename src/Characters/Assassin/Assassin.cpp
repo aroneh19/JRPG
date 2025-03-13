@@ -12,6 +12,10 @@ void Assassin::useSkill(Character& target) {
     std::cout << name << " uses Shadow Strike on " << target.getName() << "!\n";
 }
 
+void Assassin::useSkill2(Character& target) {
+    std::cout << name << " uses Volley to hit " << target.getName() << " multiple times!\n";
+}
+
 void Assassin::focus() {
     mp += 2;
     std::cout << name << " focuses in the shadows and gains 2 MP!\n";
