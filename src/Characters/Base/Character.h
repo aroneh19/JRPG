@@ -9,14 +9,7 @@ class Character
 protected:
     std::string name;
     int hp;
-    int maxHp;
-    int atk;
-    int spatk;
-    int def;
-    int spdef;
-    int spd;
-    int mp;
-    int lck;
+    int maxHp, atk, spatk, def, spdef, spd, mp, lck;
     bool isFrontline;
 
 public:
