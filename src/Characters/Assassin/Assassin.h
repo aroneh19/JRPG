@@ -1,6 +1,7 @@
 #ifndef ASSASSIN_H
 #define ASSASSIN_H
 
+
 #include "../base/Character.h"
 
 class Assassin : public Character
