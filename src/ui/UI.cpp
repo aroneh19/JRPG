@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <iomanip> // For formatting
+#include <iomanip>
 
 struct Character {
     std::string name;
