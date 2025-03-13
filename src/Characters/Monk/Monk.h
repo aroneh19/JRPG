@@ -1,16 +1,16 @@
 #ifndef MONK_H
 #define MONK_H
 
-#include "../base/Character.h"
+#include "../Base/Character.h"
 
-class Monk : public Character
-{
+class Monk : public Character {
 public:
     Monk(std::string name);
 
-    // Override methods
-    void useSkill(Character &target) override;
+    void attack(Character& target) override;
+    void useSkill(Character& target) override;
+    void focus() override;
     void displaySkills() const override;
 };
 
-#endif // Monk_H
+#endif // MONK_H

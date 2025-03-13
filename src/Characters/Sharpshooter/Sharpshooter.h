@@ -1,16 +1,16 @@
 #ifndef SHARPSHOOTER_H
 #define SHARPSHOOTER_H
 
-#include "../base/Character.h"
+#include "../Base/Character.h"
 
-class Sharpshooter : public Character
-{
+class Sharpshooter : public Character {
 public:
     Sharpshooter(std::string name);
 
-    // Override methods
-    void useSkill(Character &target) override;
+    void attack(Character& target) override;
+    void useSkill(Character& target) override;
+    void focus() override;
     void displaySkills() const override;
 };
 
-#endif // Sharpshooter_H
+#endif // SHARPSHOOTER_H

@@ -1,16 +1,16 @@
 #ifndef KNIGHT_H
 #define KNIGHT_H
 
-#include "../base/Character.h"
+#include "../Base/Character.h"
 
-class Knight : public Character
-{
+class Knight : public Character {
 public:
     Knight(std::string name);
 
-    // Override methods
-    void useSkill(Character &target) override;
+    void attack(Character& target) override;
+    void useSkill(Character& target) override;
+    void focus() override;
     void displaySkills() const override;
 };
 
-#endif // Knight_H
+#endif // KNIGHT_H

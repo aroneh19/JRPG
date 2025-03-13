@@ -1,16 +1,16 @@
 #ifndef HEALER_H
 #define HEALER_H
 
-#include "../base/Character.h"
+#include "../Base/Character.h"
 
-class Healer : public Character
-{
+class Healer : public Character {
 public:
     Healer(std::string name);
 
-    // Override methods
-    void useSkill(Character &target) override;
+    void attack(Character& target) override;
+    void useSkill(Character& target) override;
+    void focus() override;
     void displaySkills() const override;
 };
 
-#endif // Healer_H
+#endif // HEALER_H

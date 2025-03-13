@@ -1,33 +1,35 @@
+# Compiler settings
 CXX = g++
 CXXFLAGS = -Wall -std=c++17
+
+# Directories
 SRC_DIR = src
 BIN_DIR = bin
+
+# Target executable
 TARGET = $(BIN_DIR)/JRPG
 
-SRCS = $(SRC_DIR)/main.cpp \
-       $(SRC_DIR)/Character/Character.cpp \
-       $(SRC_DIR)/Character/Archer.cpp \
-       $(SRC_DIR)/Character/Assassin.cpp \
-       $(SRC_DIR)/Character/Bard.cpp \
-       $(SRC_DIR)/Character/Berserker.cpp \
-       $(SRC_DIR)/Character/Healer.cpp \
-       $(SRC_DIR)/Character/Mage.cpp \
-       $(SRC_DIR)/Character/Tank.cpp \
-       $(SRC_DIR)/Combat/CombatSystem.cpp \
-       $(SRC_DIR)/Utils/Random.cpp \
-       $(SRC_DIR)/Game/Game.cpp
+# Find all .cpp source files automatically
+SRCS = $(shell find $(SRC_DIR) -name "*.cpp")
 
-OBJS = $(SRCS:.cpp=.o)
+# Generate .o file paths in bin/
+OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(BIN_DIR)/%.o, $(SRCS))
 
+# Default rule: Build the game
 all: $(TARGET)
 
+# Link all object files into the final executable
 $(TARGET): $(OBJS)
-    $(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+	@mkdir -p $(BIN_DIR)  # ✅ Ensure the bin/ directory exists
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)  # ✅ Link all object files
 
-%.o: %.cpp
-    $(CXX) $(CXXFLAGS) -c $< -o $@
+# Compile each .cpp file into .o
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(dir $@)  # ✅ Ensure necessary subdirectories exist
+	$(CXX) $(CXXFLAGS) -c $< -o $@  # ✅ Compile the .cpp file
 
+# Clean compiled files
 clean:
-    rm -f $(OBJS) $(TARGET)
+	@rm -rf $(BIN_DIR)/*  # ✅ Remove all object files & the executable
 
 .PHONY: all clean

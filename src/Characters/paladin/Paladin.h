@@ -1,16 +1,16 @@
 #ifndef PALADIN_H
 #define PALADIN_H
 
-#include "../base/Character.h"
+#include "../Base/Character.h"
 
-class Paladin : public Character
-{
+class Paladin : public Character {
 public:
     Paladin(std::string name);
 
-    // Override methods
-    void useSkill(Character &target) override;
+    void attack(Character& target) override;
+    void useSkill(Character& target) override;
+    void focus() override;
     void displaySkills() const override;
 };
 
-#endif // Paladin_H
+#endif // PALADIN_H

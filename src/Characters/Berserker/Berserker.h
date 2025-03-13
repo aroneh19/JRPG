@@ -1,14 +1,15 @@
 #ifndef BERSERKER_H
 #define BERSERKER_H
 
-#include "../base/Character.h"
+#include "../Base/Character.h"
 
 class Berserker : public Character {
 public:
     Berserker(std::string name);
 
-    // Override methods
+    void attack(Character& target) override;
     void useSkill(Character& target) override;
+    void focus() override;
     void displaySkills() const override;
 };
 

@@ -1,16 +1,16 @@
 #ifndef MAGE_H
 #define MAGE_H
 
-#include "../base/Character.h"
+#include "../Base/Character.h"
 
-class Mage : public Character
-{
+class Mage : public Character {
 public:
     Mage(std::string name);
 
-    // Override methods
-    void useSkill(Character &target) override;
+    void attack(Character& target) override;
+    void useSkill(Character& target) override;
+    void focus() override;
     void displaySkills() const override;
 };
 
-#endif // Mage_H
+#endif // MAGE_H
