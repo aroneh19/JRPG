@@ -1,7 +1,7 @@
 #ifndef KNIGHT_H
 #define KNIGHT_H
 
-#include "Character.h"
+#include "../base/Character.h"
 
 class Knight : public Character
 {

@@ -16,32 +16,42 @@ int Character::getMp() const { return mp; }
 int Character::getLck() const { return lck; }
 bool Character::getIsFrontline() const { return isFrontline; }
 
-void Character::setHp(int newHp) {
+void Character::setHp(int newHp)
+{
     hp = newHp;
-    if (hp < 0) hp = 0;
-    if (hp > maxHp) hp = maxHp;
- }
-
-void Character::setMp(int newMp) {
-    mp = newMp;
-    if (mp < 0) mp = 0;
+    if (hp < 0)
+        hp = 0;
+    if (hp > maxHp)
+        hp = maxHp;
 }
 
-void Character::attack(Character& target) {
+void Character::setMp(int newMp)
+{
+    mp = newMp;
+    if (mp < 0)
+        mp = 0;
+}
+
+void Character::attack(Character &target)
+{
     int damage = (atk - target.getDef());
-    if (damage < atk / 3) damage = atk / 3;
+    if (damage < atk / 3)
+        damage = atk / 3;
     target.setHp(target.getHp() - damage);
     std::cout << name << " attacks " << target.getName() << " for " << damage << " damage!\n";
 }
 
-void Character::useSkill(Character& target) {
+void Character::useSkill(Character &target)
+{
     std::cout << name << " uses a skill!\n";
 }
 
-void Character::focus() {
+void Character::focus()
+{
     mp += 2;
 }
 
-void Character::displayStats() const {
+void Character::displayStats() const
+{
     std::cout << "Name: " << name << "\n";
 }

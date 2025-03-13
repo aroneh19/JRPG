@@ -1,7 +1,7 @@
 #ifndef SHARPSHOOTER_H
 #define SHARPSHOOTER_H
 
-#include "Character.h"
+#include "../base/Character.h"
 
 class Sharpshooter : public Character
 {

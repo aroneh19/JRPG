@@ -1,7 +1,7 @@
 #ifndef MONK_H
 #define MONK_H
 
-#include "Character.h"
+#include "../base/Character.h"
 
 class Monk : public Character
 {

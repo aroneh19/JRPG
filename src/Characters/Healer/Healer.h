@@ -1,7 +1,7 @@
 #ifndef HEALER_H
 #define HEALER_H
 
-#include "Character.h"
+#include "../base/Character.h"
 
 class Healer : public Character
 {

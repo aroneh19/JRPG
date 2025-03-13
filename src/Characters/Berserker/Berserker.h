@@ -1,7 +1,7 @@
 #ifndef BERSERKER_H
 #define BERSERKER_H
 
-#include "Character.h"
+#include "../base/Character.h"
 
 class Berserker : public Character {
 public:
