@@ -5,8 +5,6 @@
 
 namespace Menu {
     void displayMainMenu();
-
-    void displayCharacterSelection();
 }
 
 #endif

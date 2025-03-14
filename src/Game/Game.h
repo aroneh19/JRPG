@@ -8,6 +8,8 @@ class Game {
 public:
     static void startPVP();
     static void startPVE();
+    static Character* createCharacter(int choice);  
+    static void selectSquad(std::vector<Character*>& squad);
 };
 
 #endif

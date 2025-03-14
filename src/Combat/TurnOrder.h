@@ -1,7 +1,7 @@
 #ifndef TURNORDER_H
 #define TURNORDER_H
 
-#include "../characters/base/Character.h"
+#include "../Characters/Base/Character.h"
 #include <vector>
 
 class TurnOrder

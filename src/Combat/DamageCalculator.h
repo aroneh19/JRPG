@@ -1,7 +1,7 @@
 #ifndef DAMAGECALCULATOR_H
 #define DAMAGECALCULATOR_H
 
-#include "../characters/base/Character.h"
+#include "../Characters/Base/Character.h"
 
 class DamageCalculator
 {
