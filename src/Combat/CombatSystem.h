@@ -11,7 +11,7 @@ private:
 
     bool isCombatOver();
     void performAction(Character* character);
-    Character* selectTarget(Character* attacker);
+    Character* selectTarget(Character* attacker, bool selectAlly);
 
 public:
     CombatSystem(std::vector<Character*>& playerTeam, std::vector<Character*>& enemyTeam);  // ✅ Ensure this is declared

@@ -82,32 +82,44 @@ void CombatSystem::performAction(Character* character) {
     std::cin >> action;
 
     if (action == 1) {  // 🏹 Attack
-        Character* target = selectTarget(character);
+        Character* target = selectTarget(character, false);  // Target enemy team
         if (target) {
             int damage = DamageCalculator::calculateDamage(*character, *target);
             target->setHp(target->getHp() - damage);
             UI::displayActionResult(character->getName(), target->getName(), damage);
         }
-    } else if (action == 2) {  // ✨ Use Skill
-        Character* target = selectTarget(character);
-        if (target) {
-            character->useSkill(*target);
+    } else if (action == 2) {  // ✨ Use Skill (Healing or other effects)
+        // ✅ Check if the character is a Healer
+        if (character->getName() == "Healer") {
+            Character* target = selectTarget(character, true);  // Target **own** team for healing
+            if (target) {
+                character->useSkill(*target);
+            }
+        } else {  // Normal skill usage targets enemies
+            Character* target = selectTarget(character, false);
+            if (target) {
+                character->useSkill(*target);
+            }
         }
     } else if (action == 3) {  // ⚡ Focus (Regain MP)
         character->focus();
     }
 }
- // ✅ Required for std::find
 
- Character* CombatSystem::selectTarget(Character* attacker) {
+
+Character* CombatSystem::selectTarget(Character* attacker, bool selectAlly) {
+    // ✅ Determine which team the attacker is on
     bool isPlayer1 = (std::find(playerTeam.begin(), playerTeam.end(), attacker) != playerTeam.end());
-    std::vector<Character*>& opponentTeam = isPlayer1 ? enemyTeam : playerTeam;
+    
+    // ✅ Select the correct target team
+    std::vector<Character*>& targetTeam = selectAlly ? (isPlayer1 ? playerTeam : enemyTeam)
+                                                     : (isPlayer1 ? enemyTeam : playerTeam);
 
     std::vector<Character*> frontliners;
     std::vector<Character*> backliners;
 
-    // ✅ Split opponent team into frontliners and backliners
-    for (Character* c : opponentTeam) {
+    // ✅ Separate frontliners and backliners
+    for (Character* c : targetTeam) {
         if (c->getIsFrontline() && c->getHp() > 0) {
             frontliners.push_back(c);
         } else if (!c->getIsFrontline() && c->getHp() > 0) {
@@ -115,8 +127,8 @@ void CombatSystem::performAction(Character* character) {
         }
     }
 
-    // ✅ If frontliners are still alive, only allow attacking them
-    std::vector<Character*>& availableTargets = !frontliners.empty() ? frontliners : backliners;
+    // ✅ Choose available targets (Frontliners first, unless healing)
+    std::vector<Character*>& availableTargets = (selectAlly || frontliners.empty()) ? targetTeam : frontliners;
 
     if (availableTargets.empty()) {
         std::cout << "⚠️ No valid targets! Skipping turn...\n";
