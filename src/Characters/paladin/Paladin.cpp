@@ -28,16 +28,11 @@ void Paladin::useSkill(Character &target)
     mp -= 10;
     skillCooldown = 10;
 
-    // Boost ATK and DEF of all allies by +1
-    // Assuming you have a way to access all allies (e.g., a team vector)
-    // For simplicity, we'll assume the Paladin is part of a team and can boost all allies.
-    // Example:
-    // for (auto* ally : team) {
-    //     ally->setAtk(ally->getAtk() + 1);
-    //     ally->setDef(ally->getDef() + 1);
-    // }
+    // Boost the Paladin's own ATK and DEF by +1
+    atk += 1;
+    def += 1;
 
-    std::cout << name << " uses Aura of Protection, boosting all allies' ATK and DEF by +1!\n";
+    std::cout << name << " uses Aura of Protection, boosting their own ATK and DEF by +1!\n";
 }
 
 void Paladin::focus()
