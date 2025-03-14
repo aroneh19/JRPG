@@ -2,7 +2,7 @@
 #include <iostream>
 
 Archer::Archer(std::string name) 
-    : Character(name, 12, 18, 8, 14, 10, 12, false), skillCooldown(0) {}
+    : Character(name, 12, 18, 8, 14, 10, 12, false, "Archer"), skillCooldown(0) {}
 
 void Archer::attack(Character& target) {
     std::cout << name << " shoots an arrow at " << target.getName() << "!\n";

@@ -10,9 +10,10 @@ protected:
     std::string name;
     int hp, maxHp, atk, def, spd, mp, lck;
     bool isFrontline;
+    std::string type; 
 
 public:
-    Character(std::string name, int hp, int atk, int def, int spd, int mp, int lck, bool isFrontline);
+    Character(std::string name, int hp, int atk, int def, int spd, int mp, int lck, bool isFrontline, std::string type);
 
     virtual ~Character() = default;
 
@@ -37,6 +38,11 @@ public:
     bool isAlive() const;
 
     virtual void displaySkills() const = 0;
+
+    bool isInFrontline() const; 
+    bool isBackline() const;
+    bool isHealer() const;
+
 };
 
 #endif // CHARACTER_H

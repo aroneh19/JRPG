@@ -2,7 +2,7 @@
 #include <iostream>
 
 Healer::Healer(std::string name)
-    : Character(name, 16, 8, 14, 10, 18, 12, false), skillCooldown(0) {}
+    : Character(name, 16, 8, 14, 10, 18, 12, false, "Healer"), skillCooldown(0) {}
 
 void Healer::attack(Character &target)
 {

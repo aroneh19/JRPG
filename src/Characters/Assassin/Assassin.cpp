@@ -2,7 +2,7 @@
 #include <iostream>
 
 Assassin::Assassin(std::string name)
-    : Character(name, 8, 18, 8, 16, 8, 16, false), skillCooldown(0) {}
+    : Character(name, 8, 18, 8, 16, 8, 16, false, "Assassin"), skillCooldown(0) {}
 
 void Assassin::attack(Character &target)
 {

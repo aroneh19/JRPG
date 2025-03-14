@@ -6,13 +6,12 @@
 #include <algorithm>
 
 CombatSystem::CombatSystem(std::vector<Character*>& playerTeam, std::vector<Character*>& enemyTeam)
-    : playerTeam(playerTeam), enemyTeam(enemyTeam) {}  // ✅ Constructor Definition
-
+    : playerTeam(playerTeam), enemyTeam(enemyTeam) {} 
 
 void CombatSystem::startCombat() {
     std::cout << "🚀 Battle begins! Checking teams...\n";
 
-    std::cout << "✅ Player 1's Team:\n";
+    std::cout << " Player 1's Team:\n";
     for (Character* c : playerTeam) {
         if (!c) {
             std::cout << "⚠️ ERROR: Null character in Player 1's team!\n";
@@ -58,7 +57,7 @@ void CombatSystem::startCombat() {
         UI::displayHPMP(playerTeam, enemyTeam);
     }
 
-    std::string winner = isCombatOver() ? (playerTeam[0]->getHp() > 0 ? "Player Team" : "Enemy Team") : "Unknown";
+    std::string winner = isCombatOver() ? (playerTeam[0]->getHp() > 0 ? "Team 1" : "Team 2") : "Unknown";
     UI::displayWinner(winner);
 }
 
@@ -81,62 +80,37 @@ void CombatSystem::performAction(Character* character) {
     std::cout << "Choose an action (1: Attack, 2: Use Skill, 3: Focus): ";
     std::cin >> action;
 
-    if (action == 1) {  // 🏹 Attack
-        Character* target = selectTarget(character, false);  // Target enemy team
+    if (action == 1) {  // 🏹 Regular Attack (Frontline can only attack enemy frontline)
+        Character* target = selectTarget(character, false);
         if (target) {
             int damage = DamageCalculator::calculateDamage(*character, *target);
             target->setHp(target->getHp() - damage);
             UI::displayActionResult(character->getName(), target->getName(), damage);
         }
-    } else if (action == 2) {  // ✨ Use Skill (Healing or other effects)
-        // ✅ Check if the character is a Healer
-        if (character->getName() == "Healer") {
-            Character* target = selectTarget(character, true);  // Target **own** team for healing
-            if (target) {
-                character->useSkill(*target);
-            }
-        } else {  // Normal skill usage targets enemies
-            Character* target = selectTarget(character, false);
-            if (target) {
-                character->useSkill(*target);
-            }
+    } else if (action == 2) {  // ✨ Use Skill (Backliners can attack both lines)
+        Character* target = selectTarget(character, true);
+        if (target) {
+            character->useSkill(*target);
         }
     } else if (action == 3) {  // ⚡ Focus (Regain MP)
         character->focus();
     }
 }
 
+Character* CombatSystem::getValidTarget(std::vector<Character*>& team, bool allowBackline) {
+    std::vector<Character*> availableTargets;
 
-Character* CombatSystem::selectTarget(Character* attacker, bool selectAlly) {
-    // ✅ Determine which team the attacker is on
-    bool isPlayer1 = (std::find(playerTeam.begin(), playerTeam.end(), attacker) != playerTeam.end());
-    
-    // ✅ Select the correct target team
-    std::vector<Character*>& targetTeam = selectAlly ? (isPlayer1 ? playerTeam : enemyTeam)
-                                                     : (isPlayer1 ? enemyTeam : playerTeam);
-
-    std::vector<Character*> frontliners;
-    std::vector<Character*> backliners;
-
-    // ✅ Separate frontliners and backliners
-    for (Character* c : targetTeam) {
-        if (c->getIsFrontline() && c->getHp() > 0) {
-            frontliners.push_back(c);
-        } else if (!c->getIsFrontline() && c->getHp() > 0) {
-            backliners.push_back(c);
+    // ✅ Collect valid targets
+    for (Character* target : team) {
+        if (target->isAlive() && (allowBackline || target->isInFrontline())) {
+            availableTargets.push_back(target);
         }
     }
 
-    // ✅ Choose available targets (Frontliners first, unless healing)
-    std::vector<Character*>& availableTargets = (selectAlly || frontliners.empty()) ? targetTeam : frontliners;
-
-    if (availableTargets.empty()) {
-        std::cout << "⚠️ No valid targets! Skipping turn...\n";
-        return nullptr;
-    }
+    if (availableTargets.empty()) return nullptr;  // No valid targets
 
     // ✅ Display available targets
-    std::cout << "🔍 Choose a target:\n";
+    std::cout << "Choose a target:\n";
     for (size_t i = 0; i < availableTargets.size(); ++i) {
         std::cout << i + 1 << ": " << availableTargets[i]->getName() 
                   << " (HP: " << availableTargets[i]->getHp() << ")\n";
@@ -145,11 +119,41 @@ Character* CombatSystem::selectTarget(Character* attacker, bool selectAlly) {
     int choice;
     std::cin >> choice;
 
-    // ✅ Validate input
     if (choice < 1 || choice > static_cast<int>(availableTargets.size())) {
         std::cout << "❌ Invalid selection! Choosing first available target.\n";
-        return availableTargets[0];  // ✅ Return first valid target
+        return availableTargets[0];  // ✅ Default to first valid target
     }
 
-    return availableTargets[choice - 1]; // ✅ Return selected target
+    return availableTargets[choice - 1];
+}
+
+
+
+Character* CombatSystem::selectTarget(Character* attacker, bool isSkill) {
+    // Determine the attacker's team and opponent team
+    bool isPlayer1 = (std::find(playerTeam.begin(), playerTeam.end(), attacker) != playerTeam.end());
+    std::vector<Character*>& opponentTeam = isPlayer1 ? enemyTeam : playerTeam;
+    std::vector<Character*>& allyTeam = isPlayer1 ? playerTeam : enemyTeam;
+
+    // ✅ Fix: Healer's skill must target allies
+    if (attacker->isHealer() && isSkill) {
+        return getValidTarget(allyTeam, true);  // ✅ Always allow all allies to be healed
+    }
+
+    // ✅ Check if the opponent's frontline is still alive
+    bool frontlineAlive = false;
+    for (Character* target : opponentTeam) {
+        if (target->isAlive() && target->isInFrontline()) {
+            frontlineAlive = true;
+            break;
+        }
+    }
+
+    // ✅ Restrict Frontliners from using skill on backline
+    bool allowBackline = isSkill && attacker->isBackline();  // ✅ Only backline characters can target backline with skills
+    if (!frontlineAlive) {
+        allowBackline = true;  // ✅ If frontline is gone, all characters can attack backline
+    }
+
+    return getValidTarget(opponentTeam, allowBackline);
 }

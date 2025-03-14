@@ -2,7 +2,7 @@
 #include <iostream>
 
 Berserker::Berserker(std::string name)
-    : Character(name, 14, 18, 10, 12, 8, 10, true), skillCooldown(0) {}
+    : Character(name, 14, 18, 10, 12, 8, 10, true, "Berserker"), skillCooldown(0) {}
 
 void Berserker::attack(Character &target)
 {

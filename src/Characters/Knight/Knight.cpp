@@ -2,7 +2,7 @@
 #include <iostream>
 
 Knight::Knight(std::string name)
-    : Character(name, 14, 14, 14, 12, 10, 10, true), skillCooldown(0) {}
+    : Character(name, 14, 14, 14, 12, 10, 10, true, "Knight"), skillCooldown(0) {}
 
 void Knight::attack(Character &target)
 {

@@ -2,7 +2,7 @@
 #include <iostream>
 
 Paladin::Paladin(std::string name)
-    : Character(name, 16, 10, 16, 10, 12, 10, true), skillCooldown(0) {}
+    : Character(name, 16, 10, 16, 10, 12, 10, true, "Paladin"), skillCooldown(0) {}
 
 void Paladin::attack(Character &target)
 {

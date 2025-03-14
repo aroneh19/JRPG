@@ -2,7 +2,7 @@
 #include <iostream>
 
 Monk::Monk(std::string name)
-    : Character(name, 14, 12, 10, 14, 10, 12, true), skillCooldown(0) {}
+    : Character(name, 14, 12, 10, 14, 10, 12, true, "Monk"), skillCooldown(0) {}
 
 void Monk::attack(Character &target)
 {

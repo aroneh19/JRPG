@@ -1,8 +1,8 @@
 #include "Character.h"
 #include <iostream>
 
-Character::Character(std::string name, int hp, int atk, int def, int spd, int mp, int lck, bool isFrontline)
-    : name(name), hp(hp), maxHp(hp), atk(atk), def(def), spd(spd), mp(mp), lck(lck), isFrontline(isFrontline) {}
+Character::Character(std::string name, int hp, int atk, int def, int spd, int mp, int lck, bool isFrontline, std::string type)
+    : name(name), hp(hp), maxHp(hp), atk(atk), def(def), spd(spd), mp(mp), lck(lck), isFrontline(isFrontline), type(type) {}  // ✅ Properly initializes type
 
 std::string Character::getName() const { return name; }
 int Character::getHp() const { return hp; }
@@ -57,4 +57,16 @@ void Character::displayStats() const
 bool Character::isAlive() const
 {
     return hp > 0;
+}
+
+bool Character::isInFrontline() const {
+    return type == "Paladin" || type == "Berserker" || type == "Monk" || type == "Knight";
+}
+
+bool Character::isBackline() const {
+    return type == "Archer" || type == "Mage" || type == "Assassin" || type == "Healer";
+}
+
+bool Character::isHealer() const {
+    return type == "Healer";
 }
