@@ -7,7 +7,7 @@ Berserker::Berserker(std::string name)
 void Berserker::attack(Character &target)
 {
     std::cout << name << " swings their axe at " << target.getName() << "!\n";
-    Character::attack(target); // Use the base attack logic
+    Character::attack(target); 
 }
 
 void Berserker::useSkill(Character &target)
@@ -24,19 +24,16 @@ void Berserker::useSkill(Character &target)
         return;
     }
 
-    // Deduct MP and apply cooldown
     mp -= 4;
     skillCooldown = 3;
 
-    // Calculate damage (2x ATK)
     int damage = static_cast<int>(atk * 2.0);
     target.setHp(target.getHp() - damage);
 
-    // Calculate recoil damage (10% of damage dealt)
     int recoilDamage = static_cast<int>(damage * 0.1);
     hp -= recoilDamage;
     if (hp < 0)
-        hp = 0; // Ensure HP doesn't go below 0
+        hp = 0; 
 
     std::cout << name << " uses Rage Strike on " << target.getName() << " for " << damage << " damage!\n";
     std::cout << name << " takes " << recoilDamage << " recoil damage!\n";

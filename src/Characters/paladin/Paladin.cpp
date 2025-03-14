@@ -7,7 +7,7 @@ Paladin::Paladin(std::string name)
 void Paladin::attack(Character &target)
 {
     std::cout << name << " strikes " << target.getName() << " with a holy sword!\n";
-    Character::attack(target); // Use the base attack logic
+    Character::attack(target); 
 }
 
 void Paladin::useSkill(Character &target)
@@ -24,11 +24,9 @@ void Paladin::useSkill(Character &target)
         return;
     }
 
-    // Deduct MP and apply cooldown
     mp -= 10;
     skillCooldown = 10;
 
-    // Boost the Paladin's own ATK and DEF by +1
     atk += 1;
     def += 1;
 

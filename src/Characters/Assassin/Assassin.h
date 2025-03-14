@@ -6,7 +6,7 @@
 class Assassin : public Character
 {
 private:
-    int skillCooldown; // Cooldown tracker for Backstab
+    int skillCooldown;
 
 public:
     Assassin(std::string name);
@@ -20,4 +20,4 @@ public:
     bool isSkillReady() const;
 };
 
-#endif // ASSASSIN_H
+#endif 

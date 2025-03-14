@@ -7,7 +7,7 @@ Mage::Mage(std::string name)
 void Mage::attack(Character &target)
 {
     std::cout << name << " casts a magic missile at " << target.getName() << "!\n";
-    Character::attack(target); // Use the base attack logic
+    Character::attack(target); 
 }
 
 void Mage::useSkill(Character &target)
@@ -24,11 +24,9 @@ void Mage::useSkill(Character &target)
         return;
     }
 
-    // Deduct MP and apply cooldown
     mp -= 5;
     skillCooldown = 3;
 
-    // Calculate damage (2x ATK)
     int damage = static_cast<int>(atk * 2.0);
     target.setHp(target.getHp() - damage);
 

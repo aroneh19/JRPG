@@ -7,7 +7,7 @@ Knight::Knight(std::string name)
 void Knight::attack(Character &target)
 {
     std::cout << name << " slashes " << target.getName() << " with a longsword!\n";
-    Character::attack(target); // Use the base attack logic
+    Character::attack(target); 
 }
 
 void Knight::useSkill(Character &target)
@@ -24,12 +24,10 @@ void Knight::useSkill(Character &target)
         return;
     }
 
-    // Deduct MP and apply cooldown
     mp -= 5;
     skillCooldown = 4;
 
-    // Calculate damage (ignores DEF, but damage is halved)
-    int damage = static_cast<int>(atk * 0.5); // Halved damage
+    int damage = static_cast<int>(atk * 0.5); 
     target.setHp(target.getHp() - damage);
 
     std::cout << name << " uses Royal Spear on " << target.getName() << ", dealing " << damage << " piercing damage! (Ignores DEF)\n";

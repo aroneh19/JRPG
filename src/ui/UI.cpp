@@ -1,12 +1,12 @@
 #include "Ui.h"
 #include <iostream>
-#include <iomanip>  // ✅ Needed for formatting output
+#include <iomanip>  
 #include <vector>
-#include <string>   // ✅ Ensure string is included
+#include <string>   
 #include "../Characters/Base/Character.h" 
 #include "../Game/Game.h" 
 
-namespace UI {  // ✅ Make sure namespace is present
+namespace UI {  
 
     void displayCharacterSelection(const std::string& role, const std::vector<int>& availableCharacters) {
         std::cout << "🏆 SELECT YOUR CHARACTER: " << role << " 🏆\n";
@@ -18,7 +18,7 @@ namespace UI {  // ✅ Make sure namespace is present
 
 void displayBattleState(const std::vector<Character*>& team1, const std::vector<Character*>& team2) {
     std::cout << "\n=== ⚔️ Battle Begins! ⚔️ ===\n";
-    displayHPMP(team1, team2);  // ✅ Show HP/MP before starting battle
+    displayHPMP(team1, team2);  
 }
 
 void displayHPMP(const std::vector<Character*>& team1, const std::vector<Character*>& team2) {
@@ -58,4 +58,4 @@ void displayWinner(const std::string& winner) {
     std::cout << "\n🎉 " << winner << " Wins! 🎉\n";
 }
 
-} // namespace UI
+}

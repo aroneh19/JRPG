@@ -6,7 +6,7 @@
 class Paladin : public Character
 {
 private:
-    int skillCooldown; // Cooldown tracker for Divine Shield
+    int skillCooldown; 
 
 public:
     Paladin(std::string name);
@@ -20,4 +20,4 @@ public:
     bool isSkillReady() const;
 };
 
-#endif // PALADIN_H
+#endif 

@@ -7,7 +7,7 @@ Monk::Monk(std::string name)
 void Monk::attack(Character &target)
 {
     std::cout << name << " delivers a rapid punch to " << target.getName() << "!\n";
-    Character::attack(target); // Use the base attack logic
+    Character::attack(target); 
 }
 
 void Monk::useSkill(Character &target)
@@ -24,11 +24,9 @@ void Monk::useSkill(Character &target)
         return;
     }
 
-    // Deduct MP and apply cooldown
     mp -= 6;
     skillCooldown = 4;
 
-    // Calculate healing (30% of Monk's max HP)
     int healingAmount = static_cast<int>(maxHp * 0.3);
     hp += healingAmount;
     if (hp > maxHp)

@@ -7,7 +7,7 @@ Healer::Healer(std::string name)
 void Healer::attack(Character &target)
 {
     std::cout << name << " gently taps " << target.getName() << " for minor damage!\n";
-    Character::attack(target); // Use the base attack logic
+    Character::attack(target);
 }
 
 void Healer::useSkill(Character &target)
@@ -18,10 +18,8 @@ void Healer::useSkill(Character &target)
         return;
     }
 
-    // Deduct MP
     mp -= 4;
 
-    // Calculate healing (30% of target's max HP)
     int healingAmount = static_cast<int>(target.getMaxHp() * 0.3);
     target.setHp(target.getHp() + healingAmount);
 

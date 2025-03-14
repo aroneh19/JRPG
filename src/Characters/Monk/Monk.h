@@ -6,7 +6,7 @@
 class Monk : public Character
 {
 private:
-    int skillCooldown; // Cooldown tracker for Chi Burst
+    int skillCooldown;
 
 public:
     Monk(std::string name);
@@ -20,4 +20,4 @@ public:
     bool isSkillReady() const;
 };
 
-#endif // MONK_H
+#endif 

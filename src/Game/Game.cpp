@@ -3,14 +3,7 @@
 #include <algorithm>
 #include "../ui/Ui.h"
 #include "Game.h"
-#include "../Characters/Paladin/Paladin.h"
-#include "../Characters/Berserker/Berserker.h"
-#include "../Characters/Monk/Monk.h"
-#include "../Characters/Knight/Knight.h"
-#include "../Characters/Archer/Archer.h"
-#include "../Characters/Mage/Mage.h"
-#include "../Characters/Healer/Healer.h"
-#include "../Characters/Assassin/Assassin.h"
+#include "../Characters/Characters.h"  // ✅ Single include for all characters
 #include "../Combat/CombatSystem.h"
 
 void Game::startPVP() {
@@ -26,8 +19,6 @@ void Game::startPVP() {
     battle.startCombat();
 }
 
-
-
 void Game::startPVE() {
     std::cout << "🎮 Starting PVE Mode...\n";
 }
@@ -38,10 +29,10 @@ Character* Game::createCharacter(int choice) {
         case 2: return new Berserker("Berserker");
         case 3: return new Monk("Monk");
         case 4: return new Knight("Knight");
-        case 5: return new Archer("Archer");   // ✅ Ensure correct numbering
-        case 6: return new Mage("Mage");       // ✅ Correctly map 6 to Mage
-        case 7: return new Healer("Healer");   // ✅ Correctly map 7 to Healer
-        case 8: return new Assassin("Assassin");  // ✅ Correctly map 8 to Assassin
+        case 5: return new Archer("Archer");
+        case 6: return new Mage("Mage");
+        case 7: return new Healer("Healer");
+        case 8: return new Assassin("Assassin");
         default: return nullptr;
     }
 }
@@ -53,7 +44,7 @@ int Game::getValidChoice(const std::vector<int>& availableCharacters) {
         std::cin >> choice;
 
         if (std::find(availableCharacters.begin(), availableCharacters.end(), choice) != availableCharacters.end()) {
-            return choice;  // ✅ Valid choice
+            return choice;
         } else {
             std::cout << "❌ Invalid choice! Pick an available character.\n";
         }
@@ -75,10 +66,9 @@ std::string Game::getCharacterName(int choice) {
 }
 
 void Game::selectSquads(std::vector<Character*>& player1Squad, std::vector<Character*>& player2Squad) {
-    std::vector<int> availableFrontliners = {1, 2, 3, 4}; // Frontliner choices
-    std::vector<int> availableBackliners = {5, 6, 7, 8};  // Backliner choices
+    std::vector<int> availableFrontliners = {1, 2, 3, 4};
+    std::vector<int> availableBackliners = {5, 6, 7, 8};
 
-    // ✅ Pick **2 Frontliners** per player (Alternating Turns)
     for (int i = 0; i < 2; ++i) {  
         std::cout << "🎮 Player 1, pick Frontliner " << (i + 1) << ":\n";
         UI::displayCharacterSelection("Frontliners", availableFrontliners);
@@ -93,7 +83,6 @@ void Game::selectSquads(std::vector<Character*>& player1Squad, std::vector<Chara
         availableFrontliners.erase(std::remove(availableFrontliners.begin(), availableFrontliners.end(), choice2), availableFrontliners.end());
     }
 
-    // ✅ Pick **2 Backliners** per player (Alternating Turns)
     for (int i = 0; i < 2; ++i) {  
         std::cout << "🎮 Player 1, pick Backliner " << (i + 1) << ":\n";
         UI::displayCharacterSelection("Backliners", availableBackliners);

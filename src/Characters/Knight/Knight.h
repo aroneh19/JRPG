@@ -6,7 +6,7 @@
 class Knight : public Character
 {
 private:
-    int skillCooldown; // Cooldown tracker for Shield Bash
+    int skillCooldown; 
 
 public:
     Knight(std::string name);
@@ -20,4 +20,4 @@ public:
     bool isSkillReady() const;
 };
 
-#endif // KNIGHT_H
+#endif 

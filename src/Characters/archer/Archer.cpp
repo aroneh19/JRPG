@@ -6,7 +6,7 @@ Archer::Archer(std::string name)
 
 void Archer::attack(Character& target) {
     std::cout << name << " shoots an arrow at " << target.getName() << "!\n";
-    Character::attack(target); // Use the base attack logic
+    Character::attack(target); 
 }
 
 void Archer::useSkill(Character& target) {
@@ -20,11 +20,9 @@ void Archer::useSkill(Character& target) {
         return;
     }
 
-    // Deduct MP and apply cooldown
     mp -= 5;
     skillCooldown = 3;
 
-    // Calculate damage (2.5x ATK)
     int damage = static_cast<int>(atk * 2.5);
     target.setHp(target.getHp() - damage);
 

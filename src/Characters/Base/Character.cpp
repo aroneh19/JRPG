@@ -2,7 +2,7 @@
 #include <iostream>
 
 Character::Character(std::string name, int hp, int atk, int def, int spd, int mp, int lck, bool isFrontline, std::string type)
-    : name(name), hp(hp), maxHp(hp), atk(atk), def(def), spd(spd), mp(mp), lck(lck), isFrontline(isFrontline), type(type) {}  // ✅ Properly initializes type
+    : name(name), hp(hp), maxHp(hp), atk(atk), def(def), spd(spd), mp(mp), lck(lck), isFrontline(isFrontline), type(type) {}  
 
 std::string Character::getName() const { return name; }
 int Character::getHp() const { return hp; }

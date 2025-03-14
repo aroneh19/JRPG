@@ -6,7 +6,7 @@
 class Mage : public Character
 {
 private:
-    int skillCooldown; // Cooldown tracker for Fireball
+    int skillCooldown; 
 
 public:
     Mage(std::string name);
@@ -20,4 +20,4 @@ public:
     bool isSkillReady() const;
 };
 
-#endif // MAGE_H
+#endif

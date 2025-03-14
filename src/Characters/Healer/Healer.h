@@ -6,7 +6,7 @@
 class Healer : public Character
 {
 private:
-    int skillCooldown; // Cooldown tracker for Heal
+    int skillCooldown;
 
 public:
     Healer(std::string name);

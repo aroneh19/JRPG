@@ -6,7 +6,7 @@
 class Berserker : public Character
 {
 private:
-    int skillCooldown; // Cooldown tracker for Rage
+    int skillCooldown;
 
 public:
     Berserker(std::string name);

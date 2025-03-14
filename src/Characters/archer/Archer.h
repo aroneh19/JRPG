@@ -6,7 +6,7 @@
 class Archer : public Character
 {
 private:
-    int skillCooldown; // Cooldown tracker for Snipe Shot
+    int skillCooldown; 
 
 public:
     Archer(std::string name);
@@ -19,4 +19,4 @@ public:
     bool isSkillReady() const;
 };
 
-#endif // ARCHER_H
+#endif 
