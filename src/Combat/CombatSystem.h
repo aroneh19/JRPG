@@ -4,19 +4,21 @@
 #include "../Characters/Base/Character.h"
 #include <vector>
 
-class CombatSystem
-{
+class CombatSystem {
 private:
-    std::vector<Character *> playerTeam;
-    std::vector<Character *> enemyTeam;
+    std::vector<Character*> playerTeam;
+    std::vector<Character*> enemyTeam;
 
     bool isCombatOver();
-    void performAction(Character *character);
-    Character *selectTarget();
+    void performAction(Character* character);
+    Character* selectTarget(Character* attacker);
+
+
 
 public:
-    CombatSystem(std::vector<Character *> &playerTeam, std::vector<Character *> &enemyTeam);
+    CombatSystem(std::vector<Character*>& playerTeam, std::vector<Character*>& enemyTeam);
     void startCombat();
+    void displayBattleState();
 };
 
 #endif // COMBATSYSTEM_H
