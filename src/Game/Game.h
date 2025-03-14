@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "Characters/Base/Character.h"  
+#include "../Characters/Base/Character.h"
 #include <vector>
 
 class Game {
