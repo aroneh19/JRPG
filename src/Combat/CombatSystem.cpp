@@ -99,33 +99,45 @@ void CombatSystem::performAction(Character* character) {
 }
  // ✅ Required for std::find
 
-Character* CombatSystem::selectTarget(Character* attacker) {
-    // ✅ Check if attacker is in playerTeam
+ Character* CombatSystem::selectTarget(Character* attacker) {
     bool isPlayer1 = (std::find(playerTeam.begin(), playerTeam.end(), attacker) != playerTeam.end());
-    
-    // ✅ Select the opponent team
     std::vector<Character*>& opponentTeam = isPlayer1 ? enemyTeam : playerTeam;
 
-    if (opponentTeam.empty()) {
+    std::vector<Character*> frontliners;
+    std::vector<Character*> backliners;
+
+    // ✅ Split opponent team into frontliners and backliners
+    for (Character* c : opponentTeam) {
+        if (c->getIsFrontline() && c->getHp() > 0) {
+            frontliners.push_back(c);
+        } else if (!c->getIsFrontline() && c->getHp() > 0) {
+            backliners.push_back(c);
+        }
+    }
+
+    // ✅ If frontliners are still alive, only allow attacking them
+    std::vector<Character*>& availableTargets = !frontliners.empty() ? frontliners : backliners;
+
+    if (availableTargets.empty()) {
         std::cout << "⚠️ No valid targets! Skipping turn...\n";
         return nullptr;
     }
 
     // ✅ Display available targets
     std::cout << "🔍 Choose a target:\n";
-    for (size_t i = 0; i < opponentTeam.size(); ++i) {
-        std::cout << i + 1 << ": " << opponentTeam[i]->getName() 
-                  << " (HP: " << opponentTeam[i]->getHp() << ")\n";
+    for (size_t i = 0; i < availableTargets.size(); ++i) {
+        std::cout << i + 1 << ": " << availableTargets[i]->getName() 
+                  << " (HP: " << availableTargets[i]->getHp() << ")\n";
     }
 
     int choice;
     std::cin >> choice;
 
     // ✅ Validate input
-    if (choice < 1 || choice > static_cast<int>(opponentTeam.size())) {
+    if (choice < 1 || choice > static_cast<int>(availableTargets.size())) {
         std::cout << "❌ Invalid selection! Choosing first available target.\n";
-        return opponentTeam[0];  // ✅ Return first valid target
+        return availableTargets[0];  // ✅ Return first valid target
     }
 
-    return opponentTeam[choice - 1]; // ✅ Return selected target
+    return availableTargets[choice - 1]; // ✅ Return selected target
 }
