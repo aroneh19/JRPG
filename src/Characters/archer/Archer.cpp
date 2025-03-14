@@ -2,7 +2,7 @@
 #include <iostream>
 
 Archer::Archer(std::string name) 
-    : Character(name, 12, 0, 18, 6, 8, 14, 10, 12, false) {}
+    : Character(name, 12, 18, 8, 14, 10, 12, false) {}
 
 void Archer::attack(Character& target) {
     std::cout << name << " shoots an arrow at " << target.getName() << "!\n";
@@ -18,5 +18,5 @@ void Archer::focus() {
 }
 
 void Archer::displaySkills() const {
-    std::cout << name << "'s Skills: 1️⃣ Snipe Shot, 2️⃣ Volley\n";
+    std::cout << name << "'s Skills: 1️⃣ Snipe Shot\n";
 }

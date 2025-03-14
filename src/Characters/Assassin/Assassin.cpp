@@ -2,7 +2,7 @@
 #include <iostream>
 
 Assassin::Assassin(std::string name) 
-    : Character(name, 8, 18, 10, 4, 10, 16, 8, 16, false) {}
+    : Character(name, 8, 18, 8, 16, 8, 16, false) {}
 
 void Assassin::attack(Character& target) {
     std::cout << name << " swiftly slashes " << target.getName() << "!\n";
@@ -18,5 +18,5 @@ void Assassin::focus() {
 }
 
 void Assassin::displaySkills() const {
-    std::cout << name << "'s Skills: 1️⃣ Shadow Strike, 2️⃣ Smoke Bomb\n";
+    std::cout << name << "'s Skills: 1️⃣ Shadow Strike\n";
 }

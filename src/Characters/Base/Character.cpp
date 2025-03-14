@@ -1,16 +1,14 @@
 #include "Character.h"
 #include <iostream>
 
-Character::Character(std::string name, int hp, int atk, int spatk, int def, int spdef, int spd, int mp, int lck, bool isFrontline)
-    : name(name), hp(hp), maxHp(hp), atk(atk), spatk(spatk), def(def), spdef(spdef), spd(spd), mp(mp), lck(lck), isFrontline(isFrontline) {}
+Character::Character(std::string name, int hp, int atk, int def, int spd, int mp, int lck, bool isFrontline)
+    : name(name), hp(hp), maxHp(hp), atk(atk), def(def), spd(spd), mp(mp), lck(lck), isFrontline(isFrontline) {}
 
 std::string Character::getName() const { return name; }
 int Character::getHp() const { return hp; }
 int Character::getMaxHp() const { return maxHp; }
 int Character::getAtk() const { return atk; }
-int Character::getSpatk() const { return spatk; }
 int Character::getDef() const { return def; }
-int Character::getSpdef() const { return spdef; }
 int Character::getSpd() const { return spd; }
 int Character::getMp() const { return mp; }
 int Character::getLck() const { return lck; }

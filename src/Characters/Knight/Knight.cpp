@@ -2,7 +2,7 @@
 #include <iostream>
 
 Knight::Knight(std::string name) 
-    : Character(name, 14, 14, 0, 14, 10, 12, 10, 10, true) {}
+    : Character(name, 14, 14, 14, 12, 10, 10, true) {}
 
 void Knight::attack(Character& target) {
     std::cout << name << " slashes " << target.getName() << " with a longsword!\n";
@@ -18,5 +18,5 @@ void Knight::focus() {
 }
 
 void Knight::displaySkills() const {
-    std::cout << name << "'s Skills: 1️⃣ Counter Stance, 2️⃣ Rallying Cry\n";
+    std::cout << name << "'s Skills: 1️⃣ Counter Stance\n";
 }

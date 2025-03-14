@@ -2,7 +2,7 @@
 #include <iostream>
 
 Healer::Healer(std::string name) 
-    : Character(name, 16, 8, 12, 8, 16, 10, 18, 12, false) {}
+    : Character(name, 16, 8, 14, 10, 18, 12, false) {}
 
 void Healer::attack(Character& target) {
     std::cout << name << " gently taps " << target.getName() << " for minor damage!\n";
@@ -18,5 +18,5 @@ void Healer::focus() {
 }
 
 void Healer::displaySkills() const {
-    std::cout << name << "'s Skills: 1️⃣ Healing Light, 2️⃣ Purify\n";
+    std::cout << name << "'s Skills: 1️⃣ Healing Light\n";
 }

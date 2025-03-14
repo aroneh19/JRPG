@@ -2,7 +2,7 @@
 #include <iostream>
 
 Paladin::Paladin(std::string name) 
-    : Character(name, 16, 10, 0, 18, 14, 10, 12, 10, true) {}
+    : Character(name, 16, 10, 16, 10, 12, 10, true) {}
 
 void Paladin::attack(Character& target) {
     std::cout << name << " strikes " << target.getName() << " with a holy sword!\n";
@@ -18,5 +18,5 @@ void Paladin::focus() {
 }
 
 void Paladin::displaySkills() const {
-    std::cout << name << "'s Skills: 1️⃣ Shield Bash, 2️⃣ Divine Protection\n";
+    std::cout << name << "'s Skills: 1️⃣ Shield Bash\n";
 }

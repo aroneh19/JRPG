@@ -9,11 +9,11 @@ class Character
 protected:
     std::string name;
     int hp;
-    int maxHp, atk, spatk, def, spdef, spd, mp, lck;
+    int maxHp, atk, def, spd, mp, lck;
     bool isFrontline;
 
 public:
-    Character(std::string name, int hp, int atk, int spatk, int def, int spdef, int spd, int mp, int lck, bool isFrontline);
+    Character(std::string name, int hp, int atk, int def, int spd, int mp, int lck, bool isFrontline);
 
     virtual ~Character() = default;
 
@@ -21,9 +21,7 @@ public:
     int getHp() const;
     int getMaxHp() const;
     int getAtk() const;
-    int getSpatk() const;
     int getDef() const;
-    int getSpdef() const;
     int getSpd() const;
     int getMp() const;
     int getLck() const;

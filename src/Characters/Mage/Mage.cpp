@@ -2,7 +2,7 @@
 #include <iostream>
 
 Mage::Mage(std::string name) 
-    : Character(name, 8, 0, 18, 4, 10, 12, 14, 10, false) {}
+    : Character(name, 8, 18, 6, 12, 14, 10, false) {}
 
 void Mage::attack(Character& target) {
     std::cout << name << " casts a magic missile at " << target.getName() << "!\n";
@@ -18,5 +18,5 @@ void Mage::focus() {
 }
 
 void Mage::displaySkills() const {
-    std::cout << name << "'s Skills: 1️⃣ Fireball, 2️⃣ Arcane Shield\n";
+    std::cout << name << "'s Skills: 1️⃣ Fireball\n";
 }
