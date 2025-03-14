@@ -124,13 +124,14 @@ The game is implemented in C++ and uses **inheritance** to model different chara
 ## How to Compile and Run
 
 1. **Clone the Repository**:
+
    ````bash
    git clone https://github.com/your-repo/jrpg-battle-system.git
    cd jrpg-battle-system```
    ````
 
 2. **Compile and Run**:
-```bash
-    make
-    ./RPG
-```
+   ```bash
+       make
+       ./RPG
+   ```
