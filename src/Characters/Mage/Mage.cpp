@@ -1,22 +1,26 @@
 #include "Mage.h"
 #include <iostream>
 
-Mage::Mage(std::string name) 
+Mage::Mage(std::string name)
     : Character(name, 8, 18, 6, 12, 14, 10, false) {}
 
-void Mage::attack(Character& target) {
+void Mage::attack(Character &target)
+{
     std::cout << name << " casts a magic missile at " << target.getName() << "!\n";
 }
 
-void Mage::useSkill(Character& target) {
+void Mage::useSkill(Character &target)
+{
     std::cout << name << " uses Fireball on " << target.getName() << "!\n";
 }
 
-void Mage::focus() {
-    mp += 3;
+void Mage::focus()
+{
+    mp += 4;
     std::cout << name << " channels mana and regains 3 MP!\n";
 }
 
-void Mage::displaySkills() const {
+void Mage::displaySkills() const
+{
     std::cout << name << "'s Skills: 1️⃣ Fireball\n";
 }

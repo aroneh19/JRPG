@@ -13,7 +13,7 @@ void Knight::useSkill(Character& target) {
 }
 
 void Knight::focus() {
-    mp += 2;
+    mp += 4;
     std::cout << name << " steadies their stance and regains 2 MP!\n";
 }
 

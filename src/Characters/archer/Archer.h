@@ -7,7 +7,6 @@ class Archer : public Character
 {
 public:
     Archer(std::string name);
-
     void attack(Character &target) override;
     void useSkill(Character &target) override;
     void focus() override;

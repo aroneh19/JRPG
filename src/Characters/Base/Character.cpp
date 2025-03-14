@@ -46,7 +46,7 @@ void Character::useSkill(Character &target)
 
 void Character::focus()
 {
-    mp += 2;
+    mp += 4;
 }
 
 void Character::displayStats() const

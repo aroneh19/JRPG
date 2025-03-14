@@ -13,7 +13,7 @@ void Monk::useSkill(Character& target) {
 }
 
 void Monk::focus() {
-    mp += 3;
+    mp += 4;
     std::cout << name << " enters a meditative state and regains 3 MP!\n";
 }
 
