@@ -13,12 +13,9 @@ private:
     void performAction(Character* character);
     Character* selectTarget(Character* attacker);
 
-
-
 public:
-    CombatSystem(std::vector<Character*>& playerTeam, std::vector<Character*>& enemyTeam);
+    CombatSystem(std::vector<Character*>& playerTeam, std::vector<Character*>& enemyTeam);  // ✅ Ensure this is declared
     void startCombat();
-    void displayBattleState();
 };
 
 #endif // COMBATSYSTEM_H

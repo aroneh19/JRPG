@@ -9,7 +9,9 @@ public:
     static void startPVP();
     static void startPVE();
     static Character* createCharacter(int choice);  
-    static void selectSquad(std::vector<Character*>& squad);
+    static void selectSquads(std::vector<Character*>& player1Squad, std::vector<Character*>& player2Squad);
+    static std::string getCharacterName(int choice);
+    static int getValidChoice(const std::vector<int>& availableCharacters);
 };
 
 #endif

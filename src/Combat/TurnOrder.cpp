@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cstdlib> // For rand() and srand()
 #include <ctime>   // For time()
+#include <iostream>
 
 TurnOrder::TurnOrder(std::vector<Character *> &playerTeam, std::vector<Character *> &enemyTeam)
 {
@@ -20,9 +21,19 @@ TurnOrder::TurnOrder(std::vector<Character *> &playerTeam, std::vector<Character
         return (a->getSpd() + randomA) > (b->getSpd() + randomB); });
 }
 
-Character *TurnOrder::getNextCharacter()
-{
-    Character *nextCharacter = allCharacters[currentTurn];
+Character* TurnOrder::getNextCharacter() {
+    if (allCharacters.empty()) {
+        std::cout << "⚠️ ERROR: No characters in turn order!\n";
+        return nullptr;  // Prevent crash
+    }
+
+    Character* nextCharacter = allCharacters[currentTurn];
+    
+    if (!nextCharacter) {
+        std::cout << "⚠️ ERROR: Turn order has a NULL character at index " << currentTurn << "!\n";
+        return nullptr;
+    }
+
     currentTurn = (currentTurn + 1) % allCharacters.size();
     return nextCharacter;
 }

@@ -3,20 +3,18 @@
 #include <iomanip>  // ✅ Needed for formatting output
 #include <vector>
 #include <string>   // ✅ Ensure string is included
-#include "../Characters/Base/Character.h"  // ✅ Include character class for stats
+#include "../Characters/Base/Character.h" 
+#include "../Game/Game.h" 
 
 namespace UI {  // ✅ Make sure namespace is present
 
-void displayCharacterSelectionFront() {
-    std::cout << "\n🏆 SELECT YOUR TEAM 🏆\n";
-    std::cout << "Choose 2 Frontliners:\n";
-    std::cout << "1. 🛡️ Paladin  2. ⚔️ Berserker  3. 🥋 Monk  4. 🏰 Knight\n";
-}
-
-void displayCharacterSelectionBack() {
-    std::cout << "Choose 2 Backliners:\n";
-    std::cout << "5. 🎯 Archer  6. 🔥 Mage  7. 🩺 Healer  8. ☠️ Assassin\n";
-}
+    void displayCharacterSelection(const std::string& role, const std::vector<int>& availableCharacters) {
+        std::cout << "🏆 SELECT YOUR CHARACTER: " << role << " 🏆\n";
+        std::cout << "Available characters:\n";
+        for (int choice : availableCharacters) {
+            std::cout << choice << ". " << Game::getCharacterName(choice) << "\n";
+        }
+    }
 
 void displayBattleState(const std::vector<Character*>& team1, const std::vector<Character*>& team2) {
     std::cout << "\n=== ⚔️ Battle Begins! ⚔️ ===\n";

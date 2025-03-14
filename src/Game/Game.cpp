@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "../ui/Ui.h"
 #include "Game.h"
 #include "../Characters/Paladin/Paladin.h"
@@ -10,52 +11,21 @@
 #include "../Characters/Mage/Mage.h"
 #include "../Characters/Healer/Healer.h"
 #include "../Characters/Assassin/Assassin.h"
-
 #include "../Combat/CombatSystem.h"
 
 void Game::startPVP() {
     std::vector<Character*> player1Squad;
     std::vector<Character*> player2Squad;
 
-    std::cout << "🎮 Player 1, select your team!\n";
-    Game::selectSquad(player1Squad);
-
-    std::cout << "🎮 Player 2, select your team!\n";
-    Game::selectSquad(player2Squad);
+    std::cout << "🏆 Player 1 & Player 2: Pick your teams one at a time! 🏆\n";
+    selectSquads(player1Squad, player2Squad);
 
     std::cout << "\n🚀 Both teams are ready! The battle begins!\n";
-
-    // 🔍 DEBUG: Print the teams before battle
-    std::cout << "🔍 DEBUG: Player 1 Squad:\n";
-    for (auto* c : player1Squad) {
-        std::cout << " - " << c->getName() << " (HP: " << c->getHp() << ")\n";
-    }
     
-    std::cout << "🔍 DEBUG: Player 2 Squad:\n";
-    for (auto* c : player2Squad) {
-        std::cout << " - " << c->getName() << " (HP: " << c->getHp() << ")\n";
-    }
-
-    // ✅ Show initial HP & MP status before the battle
-    UI::displayBattleState(player1Squad, player2Squad);
-
-    std::cout << "🔍 DEBUG: Initial battle state displayed. Creating CombatSystem...\n";
-
-    // ✅ Initialize Combat System and start combat
-    CombatSystem combat(player1Squad, player2Squad);
-    
-    std::cout << "🔍 DEBUG: CombatSystem initialized. Starting battle...\n";
-
-    combat.startCombat();
-
-    std::cout << "🔍 DEBUG: Battle finished. Freeing memory...\n";
-
-    // ✅ Free memory AFTER the battle finishes
-    for (Character* c : player1Squad) delete c;
-    for (Character* c : player2Squad) delete c;
-
-    std::cout << "🔍 DEBUG: Memory cleanup completed.\n";
+    CombatSystem battle(player1Squad, player2Squad);
+    battle.startCombat();
 }
+
 
 
 void Game::startPVE() {
@@ -76,38 +46,65 @@ Character* Game::createCharacter(int choice) {
     }
 }
 
-
-
-void Game::selectSquad(std::vector<Character*>& squad) {
+int Game::getValidChoice(const std::vector<int>& availableCharacters) {
     int choice;
-
-    UI::displayCharacterSelectionFront();
-    std::cout << "Enter 2 choices (1-4):\n";
-
-    for (int i = 0; i < 2; i++) {
+    while (true) {
+        std::cout << "Enter your choice: ";
         std::cin >> choice;
-        Character* newCharacter = Game::createCharacter(choice);
-        if (newCharacter) {
-            squad.push_back(newCharacter);
+
+        if (std::find(availableCharacters.begin(), availableCharacters.end(), choice) != availableCharacters.end()) {
+            return choice;  // ✅ Valid choice
         } else {
-            std::cout << "❌ Invalid choice! Try again.\n";
-            i--; // Repeat selection
+            std::cout << "❌ Invalid choice! Pick an available character.\n";
         }
     }
+}
 
-    UI::displayCharacterSelectionBack();
-    std::cout << "Enter 2 choices (5-8):\n";  // ✅ Ensure correct number range
+std::string Game::getCharacterName(int choice) {
+    switch (choice) {
+        case 1: return "🛡️ Paladin";
+        case 2: return "⚔️ Berserker";
+        case 3: return "🥋 Monk";
+        case 4: return "🏰 Knight";
+        case 5: return "🎯 Archer";
+        case 6: return "🔥 Mage";
+        case 7: return "🩺 Healer";
+        case 8: return "☠️ Assassin";
+        default: return "❌ Unknown";
+    }
+}
 
-    for (int i = 0; i < 2; i++) {
-        std::cin >> choice;
-        Character* newCharacter = Game::createCharacter(choice);  // ❌ Remove "+4" offset
-        if (newCharacter) {
-            squad.push_back(newCharacter);
-        } else {
-            std::cout << "❌ Invalid choice! Try again.\n";
-            i--; // Repeat selection
-        }
+void Game::selectSquads(std::vector<Character*>& player1Squad, std::vector<Character*>& player2Squad) {
+    std::vector<int> availableFrontliners = {1, 2, 3, 4}; // Frontliner choices
+    std::vector<int> availableBackliners = {5, 6, 7, 8};  // Backliner choices
+
+    // ✅ Pick **2 Frontliners** per player (Alternating Turns)
+    for (int i = 0; i < 2; ++i) {  
+        std::cout << "🎮 Player 1, pick Frontliner " << (i + 1) << ":\n";
+        UI::displayCharacterSelection("Frontliners", availableFrontliners);
+        int choice1 = getValidChoice(availableFrontliners);
+        player1Squad.push_back(createCharacter(choice1));
+        availableFrontliners.erase(std::remove(availableFrontliners.begin(), availableFrontliners.end(), choice1), availableFrontliners.end());
+
+        std::cout << "🎮 Player 2, pick Frontliner " << (i + 1) << ":\n";
+        UI::displayCharacterSelection("Frontliners", availableFrontliners);
+        int choice2 = getValidChoice(availableFrontliners);
+        player2Squad.push_back(createCharacter(choice2));
+        availableFrontliners.erase(std::remove(availableFrontliners.begin(), availableFrontliners.end(), choice2), availableFrontliners.end());
     }
 
-    std::cout << "✅ Your squad is ready!\n";
+    // ✅ Pick **2 Backliners** per player (Alternating Turns)
+    for (int i = 0; i < 2; ++i) {  
+        std::cout << "🎮 Player 1, pick Backliner " << (i + 1) << ":\n";
+        UI::displayCharacterSelection("Backliners", availableBackliners);
+        int choice1 = getValidChoice(availableBackliners);
+        player1Squad.push_back(createCharacter(choice1));
+        availableBackliners.erase(std::remove(availableBackliners.begin(), availableBackliners.end(), choice1), availableBackliners.end());
+
+        std::cout << "🎮 Player 2, pick Backliner " << (i + 1) << ":\n";
+        UI::displayCharacterSelection("Backliners", availableBackliners);
+        int choice2 = getValidChoice(availableBackliners);
+        player2Squad.push_back(createCharacter(choice2));
+        availableBackliners.erase(std::remove(availableBackliners.begin(), availableBackliners.end(), choice2), availableBackliners.end());
+    }
 }
