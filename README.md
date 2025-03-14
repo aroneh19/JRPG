@@ -43,24 +43,26 @@ Each class has unique strengths and weaknesses, so **building a balanced team** 
 
 ## Developer Notes
 
-### **Project Structure**
-📂 src
- ├── 📂 Characters       # All playable characters are stored here
- │    ├── 📂 Base        # The base Character class (all characters inherit from this)
- │    ├── 📂 Archer      # Archer class files
- │    ├── 📂 Berserker   # Berserker class files
- │    ├── 📂 Healer      # Healer class files
- │    ├── ...           # Other character classes
- ├── 📂 Combat          # Handles combat mechanics
- │    ├── CombatSystem.cpp  # Manages battle flow
- │    ├── DamageCalculator.cpp  # Handles damage calculations
- │    ├── TurnOrder.cpp  # Manages turn order in battle
- ├── 📂 Game            # Handles game logic (team selection, game start, etc.)
- │    ├── Game.cpp      # Main game logic
- ├── 📂 UI              # Handles player interaction
- │    ├── UI.cpp        # Displays menus, battle screens, and choices
- ├── 📂 Utils           # Various utility functions (e.g., randomization)
- ├── main.cpp           # Entry point of the game
+## Project Structure
+
+The project is organized into different folders for clarity and maintainability:
+
+- **`/src`** - Contains all source code files.
+  - **`Characters/`** - Houses all character-related classes.
+    - **`Base/`** - Contains the base `Character` class, which all characters inherit from.
+    - **`Paladin/`**, **`Berserker/`**, **`Monk/`**, etc. - Each character class is in its own folder.
+  - **`Combat/`** - Handles all battle mechanics.
+    - **`CombatSystem.cpp`** - Manages the overall combat flow.
+    - **`TurnOrder.cpp`** - Determines the turn sequence.
+    - **`DamageCalculator.cpp`** - Calculates attack damage.
+  - **`Game/`** - Controls game logic.
+    - **`Game.cpp`** - Manages player squad selection and game start.
+  - **`UI/`** - Handles user interaction.
+    - **`UI.cpp`** - Displays game menus and in-game prompts.
+  - **`Utils/`** - Utility functions (e.g., random number generation).
+  - **`main.cpp`** - The entry point of the game.
+
+This structure keeps the project modular and easy to manage.
 
 
 
