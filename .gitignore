@@ -34,4 +34,3 @@
 # Exclude all extensionless files except Makefile
 *.
 !Makefile
-!*/
