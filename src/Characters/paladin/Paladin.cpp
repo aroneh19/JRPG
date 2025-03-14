@@ -12,10 +12,6 @@ void Paladin::useSkill(Character& target) {
     std::cout << name << " uses Divine Protection on the team!\n";
 }
 
-void Paladin::useSkill2(Character& target) {
-    std::cout << name << " uses Volley to hit " << target.getName() << " multiple times!\n";
-}
-
 void Paladin::focus() {
     mp += 2;
     std::cout << name << " prays and regains 2 MP!\n";

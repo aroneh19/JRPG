@@ -12,10 +12,6 @@ void Monk::useSkill(Character& target) {
     std::cout << name << " unleashes Flurry of Blows on " << target.getName() << "!\n";
 }
 
-void Monk::useSkill2(Character& target) {
-    std::cout << name << " uses Volley to hit " << target.getName() << " multiple times!\n";
-}
-
 void Monk::focus() {
     mp += 3;
     std::cout << name << " enters a meditative state and regains 3 MP!\n";

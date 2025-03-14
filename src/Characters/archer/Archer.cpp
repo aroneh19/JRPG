@@ -12,10 +12,6 @@ void Archer::useSkill(Character& target) {
     std::cout << name << " uses Snipe Shot to hit " << target.getName() << " for massive damage!\n";
 }
 
-void Archer::useSkill2(Character& target) {
-    std::cout << name << " uses Volley to hit " << target.getName() << " multiple times!\n";
-}
-
 void Archer::focus() {
     mp += 3;
     std::cout << name << " takes a deep breath and regains 3 MP!\n";

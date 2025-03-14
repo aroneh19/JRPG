@@ -12,10 +12,6 @@ void Knight::useSkill(Character& target) {
     std::cout << name << " uses Counter Stance to reflect incoming attacks!\n";
 }
 
-void Knight::useSkill2(Character& target) {
-    std::cout << name << " uses Volley to hit " << target.getName() << " multiple times!\n";
-}
-
 void Knight::focus() {
     mp += 2;
     std::cout << name << " steadies their stance and regains 2 MP!\n";

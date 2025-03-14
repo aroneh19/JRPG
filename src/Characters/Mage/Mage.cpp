@@ -12,10 +12,6 @@ void Mage::useSkill(Character& target) {
     std::cout << name << " uses Fireball on " << target.getName() << "!\n";
 }
 
-void Mage::useSkill2(Character& target) {
-    std::cout << name << " uses Volley to hit " << target.getName() << " multiple times!\n";
-}
-
 void Mage::focus() {
     mp += 3;
     std::cout << name << " channels mana and regains 3 MP!\n";

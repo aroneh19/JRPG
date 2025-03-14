@@ -12,10 +12,6 @@ void Healer::useSkill(Character& target) {
     std::cout << name << " uses Healing Light on " << target.getName() << "!\n";
 }
 
-void Healer::useSkill2(Character& target) {
-    std::cout << name << " uses Volley to hit " << target.getName() << " multiple times!\n";
-}
-
 void Healer::focus() {
     mp += 3;
     std::cout << name << " focuses and regains 3 MP!\n";
