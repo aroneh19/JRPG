@@ -7,7 +7,7 @@ SRC_DIR = src
 BIN_DIR = bin
 
 # Target executable
-TARGET = $(BIN_DIR)/JRPG
+TARGET = $JRPG
 
 # Find all .cpp source files automatically
 SRCS = $(shell find $(SRC_DIR) -name "*.cpp")
