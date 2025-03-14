@@ -1,7 +1,7 @@
 #ifndef COMBATSYSTEM_H
 #define COMBATSYSTEM_H
 
-#include "Character.h"
+#include "../Characters/Base/Character.h"
 #include <vector>
 
 class CombatSystem {
