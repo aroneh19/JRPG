@@ -7,6 +7,7 @@ Archer::Archer(std::string name)
 void Archer::attack(Character &target)
 {
     std::cout << name << " shoots an arrow at " << target.getName() << "!\n";
+    Character::attack(target);
 }
 
 void Archer::useSkill(Character &target)

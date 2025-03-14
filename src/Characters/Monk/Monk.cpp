@@ -7,6 +7,7 @@ Monk::Monk(std::string name)
 void Monk::attack(Character &target)
 {
     std::cout << name << " delivers a rapid punch to " << target.getName() << "!\n";
+    Character::attack(target);
 }
 
 void Monk::useSkill(Character &target)

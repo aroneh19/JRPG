@@ -7,6 +7,7 @@ Assassin::Assassin(std::string name)
 void Assassin::attack(Character &target)
 {
     std::cout << name << " swiftly slashes " << target.getName() << "!\n";
+    Character::attack(target);
 }
 
 void Assassin::useSkill(Character &target)

@@ -7,6 +7,7 @@ Knight::Knight(std::string name)
 void Knight::attack(Character &target)
 {
     std::cout << name << " slashes " << target.getName() << " with a longsword!\n";
+    Character::attack(target);
 }
 
 void Knight::useSkill(Character &target)

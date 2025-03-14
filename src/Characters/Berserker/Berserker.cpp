@@ -7,6 +7,7 @@ Berserker::Berserker(std::string name)
 void Berserker::attack(Character &target)
 {
     std::cout << name << " swings their axe at " << target.getName() << "!\n";
+    Character::attack(target);
 }
 
 void Berserker::useSkill(Character &target)

@@ -46,10 +46,15 @@ void Character::useSkill(Character &target)
 
 void Character::focus()
 {
-    mp += 4;
+    mp += 2;
 }
 
 void Character::displayStats() const
 {
     std::cout << "Name: " << name << "\n";
+}
+
+bool Character::isAlive() const
+{
+    return hp > 0;
 }

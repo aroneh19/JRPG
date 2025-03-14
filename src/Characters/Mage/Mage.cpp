@@ -7,6 +7,7 @@ Mage::Mage(std::string name)
 void Mage::attack(Character &target)
 {
     std::cout << name << " casts a magic missile at " << target.getName() << "!\n";
+    Character::attack(target);
 }
 
 void Mage::useSkill(Character &target)

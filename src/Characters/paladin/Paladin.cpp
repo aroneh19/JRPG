@@ -7,6 +7,7 @@ Paladin::Paladin(std::string name)
 void Paladin::attack(Character &target)
 {
     std::cout << name << " strikes " << target.getName() << " with a holy sword!\n";
+    Character::attack(target);
 }
 
 void Paladin::useSkill(Character &target)

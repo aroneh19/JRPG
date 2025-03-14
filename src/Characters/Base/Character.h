@@ -8,8 +8,7 @@ class Character
 {
 protected:
     std::string name;
-    int hp;
-    int maxHp, atk, def, spd, mp, lck;
+    int hp, maxHp, atk, def, spd, mp, lck;
     bool isFrontline;
 
 public:

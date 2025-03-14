@@ -7,6 +7,7 @@ Healer::Healer(std::string name)
 void Healer::attack(Character &target)
 {
     std::cout << name << " gently taps " << target.getName() << " for minor damage!\n";
+    Character::attack(target);
 }
 
 void Healer::useSkill(Character &target)
