@@ -24,3 +24,16 @@ void Mage::displaySkills() const
 {
     std::cout << name << "'s Skills: 1️⃣ Fireball\n";
 }
+
+void Mage::reduceCooldown()
+{
+    if (skillCooldown > 0)
+    {
+        skillCooldown--;
+    }
+}
+
+bool Mage::isSkillReady() const
+{
+    return skillCooldown == 0;
+}

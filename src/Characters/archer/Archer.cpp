@@ -24,3 +24,16 @@ void Archer::displaySkills() const
 {
     std::cout << name << "'s Skills: 1️⃣ Snipe Shot\n";
 }
+
+void Archer::reduceCooldown()
+{
+    if (skillCooldown > 0)
+    {
+        skillCooldown--;
+    }
+}
+
+bool Archer::isSkillReady() const
+{
+    return skillCooldown == 0;
+}

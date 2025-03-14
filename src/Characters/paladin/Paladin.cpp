@@ -24,3 +24,16 @@ void Paladin::displaySkills() const
 {
     std::cout << name << "'s Skills: 1️⃣ Shield Bash\n";
 }
+
+void Paladin::reduceCooldown()
+{
+    if (skillCooldown > 0)
+    {
+        skillCooldown--;
+    }
+}
+
+bool Paladin::isSkillReady() const
+{
+    return skillCooldown == 0;
+}

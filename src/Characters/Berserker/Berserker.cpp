@@ -24,3 +24,16 @@ void Berserker::displaySkills() const
 {
     std::cout << name << "'s Skills: 1️⃣ Rage Strike\n";
 }
+
+void Berserker::reduceCooldown()
+{
+    if (skillCooldown > 0)
+    {
+        skillCooldown--;
+    }
+}
+
+bool Berserker::isSkillReady() const
+{
+    return skillCooldown == 0;
+}

@@ -24,3 +24,16 @@ void Assassin::displaySkills() const
 {
     std::cout << name << "'s Skills: 1️⃣ Shadow Strike\n";
 }
+
+void Assassin::reduceCooldown()
+{
+    if (skillCooldown > 0)
+    {
+        skillCooldown--;
+    }
+}
+
+bool Assassin::isSkillReady() const
+{
+    return skillCooldown == 0;
+}

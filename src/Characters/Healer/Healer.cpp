@@ -24,3 +24,16 @@ void Healer::displaySkills() const
 {
     std::cout << name << "'s Skills: 1️⃣ Healing Light\n";
 }
+
+void Healer::reduceCooldown()
+{
+    if (skillCooldown > 0)
+    {
+        skillCooldown--;
+    }
+}
+
+bool Healer::isSkillReady() const
+{
+    return skillCooldown == 0;
+}

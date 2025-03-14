@@ -1,22 +1,39 @@
 #include "Knight.h"
 #include <iostream>
 
-Knight::Knight(std::string name) 
+Knight::Knight(std::string name)
     : Character(name, 14, 14, 14, 12, 10, 10, true) {}
 
-void Knight::attack(Character& target) {
+void Knight::attack(Character &target)
+{
     std::cout << name << " slashes " << target.getName() << " with a longsword!\n";
 }
 
-void Knight::useSkill(Character& target) {
+void Knight::useSkill(Character &target)
+{
     std::cout << name << " uses Counter Stance to reflect incoming attacks!\n";
 }
 
-void Knight::focus() {
+void Knight::focus()
+{
     mp += 4;
     std::cout << name << " steadies their stance and regains 2 MP!\n";
 }
 
-void Knight::displaySkills() const {
+void Knight::displaySkills() const
+{
     std::cout << name << "'s Skills: 1️⃣ Counter Stance\n";
+}
+
+void Knight::reduceCooldown()
+{
+    if (skillCooldown > 0)
+    {
+        skillCooldown--;
+    }
+}
+
+bool Knight::isSkillReady() const
+{
+    return skillCooldown == 0;
 }
