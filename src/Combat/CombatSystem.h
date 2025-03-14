@@ -1,20 +1,21 @@
 #ifndef COMBATSYSTEM_H
 #define COMBATSYSTEM_H
 
-#include "Character.h"
+#include "../characters/base/Character.h"
 #include <vector>
 
-class CombatSystem {
+class CombatSystem
+{
 private:
-    std::vector<Character*> playerTeam;
-    std::vector<Character*> enemyTeam;
+    std::vector<Character *> playerTeam;
+    std::vector<Character *> enemyTeam;
 
     bool isCombatOver();
-    void performAction(Character* character);
-    Character* selectTarget();
+    void performAction(Character *character);
+    Character *selectTarget();
 
 public:
-    CombatSystem(std::vector<Character*>& playerTeam, std::vector<Character*>& enemyTeam);
+    CombatSystem(std::vector<Character *> &playerTeam, std::vector<Character *> &enemyTeam);
     void startCombat();
 };
 

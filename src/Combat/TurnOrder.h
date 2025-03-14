@@ -1,17 +1,18 @@
 #ifndef TURNORDER_H
 #define TURNORDER_H
 
-#include "Character.h"
+#include "../characters/base/Character.h"
 #include <vector>
 
-class TurnOrder {
+class TurnOrder
+{
 private:
-    std::vector<Character*> allCharacters;
+    std::vector<Character *> allCharacters;
     size_t currentTurn = 0;
 
 public:
-    TurnOrder(std::vector<Character*>& playerTeam, std::vector<Character*>& enemyTeam);
-    Character* getNextCharacter();
+    TurnOrder(std::vector<Character *> &playerTeam, std::vector<Character *> &enemyTeam);
+    Character *getNextCharacter();
 };
 
 #endif // TURNORDER_H
