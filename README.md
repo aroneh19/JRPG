@@ -44,7 +44,24 @@ Each class has unique strengths and weaknesses, so **building a balanced team** 
 ## Developer Notes
 
 ### **Project Structure**
-/src ├── Characters/ # Character classes │ ├── Base/ # Base Character class │ ├── Paladin/ # Paladin class │ ├── Berserker/ # Berserker class │ ├── Monk/ # Monk class │ ├── Knight/ # Knight class │ ├── Archer/ # Archer class │ ├── Mage/ # Mage class │ ├── Healer/ # Healer class │ ├── Assassin/ # Assassin class │ ├── Combat/ # Combat logic │ ├── CombatSystem.cpp # Handles battles │ ├── TurnOrder.cpp # Manages turn order │ ├── DamageCalculator.cpp # Calculates damage │ ├── Game/ # Game logic │ ├── Game.cpp # Main game loop and player selection │ ├── UI/ # User interface │ ├── UI.cpp # Displays game menus │ ├── Utils/ # Utility functions (e.g., RNG) │ ├── main.cpp # Entry point for the game
+📂 src
+ ├── 📂 Characters       # All playable characters are stored here
+ │    ├── 📂 Base        # The base Character class (all characters inherit from this)
+ │    ├── 📂 Archer      # Archer class files
+ │    ├── 📂 Berserker   # Berserker class files
+ │    ├── 📂 Healer      # Healer class files
+ │    ├── ...           # Other character classes
+ ├── 📂 Combat          # Handles combat mechanics
+ │    ├── CombatSystem.cpp  # Manages battle flow
+ │    ├── DamageCalculator.cpp  # Handles damage calculations
+ │    ├── TurnOrder.cpp  # Manages turn order in battle
+ ├── 📂 Game            # Handles game logic (team selection, game start, etc.)
+ │    ├── Game.cpp      # Main game logic
+ ├── 📂 UI              # Handles player interaction
+ │    ├── UI.cpp        # Displays menus, battle screens, and choices
+ ├── 📂 Utils           # Various utility functions (e.g., randomization)
+ ├── main.cpp           # Entry point of the game
+
 
 
 ### **Key Components**
