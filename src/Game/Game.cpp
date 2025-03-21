@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <limits>
 #include "../ui/Ui.h"
 #include "Game.h"
 #include "../Characters/Characters.h"  // ✅ Single include for all characters
@@ -39,9 +40,17 @@ Character* Game::createCharacter(int choice) {
 
 int Game::getValidChoice(const std::vector<int>& availableCharacters) {
     int choice;
+
     while (true) {
         std::cout << "Enter your choice: ";
         std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cin.clear(); 
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+            std::cout << "❌ Invalid input! Please enter a number.\n";
+            continue;
+        }
 
         if (std::find(availableCharacters.begin(), availableCharacters.end(), choice) != availableCharacters.end()) {
             return choice;
@@ -50,6 +59,7 @@ int Game::getValidChoice(const std::vector<int>& availableCharacters) {
         }
     }
 }
+
 
 std::string Game::getCharacterName(int choice) {
     switch (choice) {
